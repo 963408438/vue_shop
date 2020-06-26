@@ -53,6 +53,7 @@
             },
             login(){
                 this.$refs.loginFormRef.validate(async valid =>{
+                    console.log(valid)
                     if (!valid)return;
                     const {data : res}=await this.$http.post('login',this.loginForm);
                     if(res.meta.status!==200) return this.$message.error("登录失败")
@@ -62,7 +63,7 @@
                     //  1.2 token只应在当前网站打开期间生效，所以将token保存在sessionStorge中
                     window.sessionStorage.setItem('token',res.data.token);
                     // 2.通过编程式导航跳转到后台主页，路由地址是/home
-                    this.$router.push('/home');
+                    await this.$router.push('/home');
                 })
             }
         }
