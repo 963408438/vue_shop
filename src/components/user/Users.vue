@@ -258,14 +258,14 @@
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
-                }).catch(err => err)
+                }).catch(err => err);
                 //如果用户确认删除则返回值为字符串 confirm
                 //如果用户取消了删除，则返回值为字符串 cancel
                 if (confirmResult !== 'confirm') {
                     return this.$message.info("已取消删除")
                 }
                 const {data: res} = await this.$http.delete('users/' + id);
-                if(res.meta.status!==200) return this.$message.error("删除用户失败");
+                if (res.meta.status !== 200) return this.$message.error("删除用户失败");
                 this.$message.success("删除成功");
                 this.getUserList()
             }
